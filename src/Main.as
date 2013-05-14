@@ -4,6 +4,7 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import input.KeyboardHandler;
 	import screens.*;
 	
 	/**
@@ -39,6 +40,7 @@ package
 		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
 			// entry point
+			KeyboardHandler.start(stage);
 			
 			ScreenManager.init(this);
 			ScreenManager.addScreen("GameScreen", new GameScreen());
