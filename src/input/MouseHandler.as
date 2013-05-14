@@ -15,18 +15,13 @@ package input
 	 * @author Kevan 'Kaveman' Robinson
 	 */
 	public class MouseHandler 
-	{
-		private static var _instance:MouseHandler;
-		
-		/**
-		 * Gets the current of instance the MouseHandler
-		 */
-		public static function get instance():MouseHandler
-		{ 
-			if (!_instance)
-				throw new Error("Instance of MouseHandler does not exist. Call MouseHandler.start before attempting to access this instance.");
-			return _instance;
-		}
+	{		
+		private static var _stage:Stage;
+				
+		private static var _mouseDown:Boolean;
+		private static var _mouseDownLast:Boolean;
+		private static var _mouseX:int;
+		private static var _mouseY:int;
 		
 		/**
 		 * Starts the mouse handler instance. This function must be called before attempting to access the instance.
@@ -34,18 +29,21 @@ package input
 		 */
 		public static function start(s:Stage):void
 		{
-			_instance = new MouseHandler(new Lockout(), s);
+			_stage = s;
+			_stage.addEventListener(MouseEvent.MOUSE_DOWN, onLeftMouseDown, false, 1);
+			_stage.addEventListener(MouseEvent.MOUSE_UP, onLeftMouseUp, false, 1);
+			_stage.addEventListener(Event.ENTER_FRAME, update, false, -1);
+			
+			_mouseDown = false;
+			_mouseDownLast = false;
+			_mouseX = 0;
+			_mouseY = 0;
 		}
-		
-		private var _mouseDown:Boolean;
-		private var _mouseDownLast:Boolean;
-		private var _mouseX:int;
-		private var _mouseY:int;
 		
 		/**
 		 * Gets the mouse position as a point.
 		 */
-		public function get mousePosition():Point 
+		public static function get mousePosition():Point 
 		{ 
 			return new Point(_mouseX, _mouseY); 
 		}
@@ -53,7 +51,7 @@ package input
 		/**
 		 * Gets the screen x-coordinate of the mouse cursor.
 		 */
-		public function get mouseX():int 
+		public static function get mouseX():int 
 		{ 
 			return _mouseX;
 		}
@@ -61,7 +59,7 @@ package input
 		/**
 		 * Gets the screen x-coordinate of the mouse cursor.
 		 */
-		public function get mouseY():int 
+		public static function get mouseY():int 
 		{
 			return _mouseY;
 		}
@@ -69,7 +67,7 @@ package input
 		/**
 		 * Gets whether the left mouse button is depressed.
 		 */
-		public function get isLeftMouseDown():Boolean 
+		public static function get isLeftMouseDown():Boolean 
 		{
 			return _mouseDown;
 		}
@@ -77,28 +75,9 @@ package input
 		/**
 		 * Gets whether the left mouse button was just clicked this frame.
 		 */
-		public function get isLeftMouseClicked():Boolean 
+		public static function get isLeftMouseClicked():Boolean 
 		{
 			return _mouseDown && !_mouseDownLast;
-		}
-		
-		/**
-		 * A restricted constructor for the MouseHandler class.
-		 * @param	lockout A class designed to ensure other objects cannot instantiate this class.
-		 * @param	stage A refernce to the stage.
-		 */
-		public function MouseHandler(lockout:Lockout, stage:Stage) 
-		{
-			if (!lockout) { throw new Error("Do not to attempt to instanitate this class. Call MouseHandler.start instead."); }
-			
-			stage.addEventListener(MouseEvent.MOUSE_DOWN, onLeftMouseDown, false, 1);
-			stage.addEventListener(  MouseEvent.MOUSE_UP,     onLeftMouseUp, false, 1);
-			stage.addEventListener(    Event.ENTER_FRAME,      update, false,-1);
-			
-			_mouseDown = false;
-			_mouseDownLast = false;
-			_mouseX = 0;
-			_mouseY = 0;
 		}
 		
 		/**
@@ -127,9 +106,10 @@ package input
 			_mouseY = _stage.mouseY;
 		}
 		
+		// Don't instantiate
+		public function MouseHandler()
+		{
+			throw new Error("Don't instantiate MouseHandler()!");
+		}
 	}
-
 }
-
-// Designed to enforce singleton pattern
-class Lockout {}
