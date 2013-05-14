@@ -1,12 +1,16 @@
 package 
 {
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import screens.*;
 	
 	/**
 	 * Date Started: 5/12/2013
 	 * @author Noah 'RTLShadow' Bond
+	 * 
+	 * DISREGARD THIS IF YOU SEE NO README!
 	 * Please read the readme.txt before sending a pull request.
 	 * It goes over proper etiquette and the standard of code
 	 * in this project. Thanks!
@@ -25,6 +29,8 @@ package
 		
 		public function Main():void 
 		{
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, init);
 		}

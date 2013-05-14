@@ -35,12 +35,15 @@
       <path-element>D:\Dropbox\IsoGame\src</path-element>
       <path-element>D:\Dev\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
+    <library-path append="true">
+      <path-element>D:\Dropbox\IsoGame\lib\assets.swc</path-element>
+    </library-path>
   </compiler>
   <file-specs>
     <path-element>D:\Dropbox\IsoGame\src\Main.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
-  <default-frame-rate>30</default-frame-rate>
+  <default-frame-rate>600</default-frame-rate>
   <default-size>
     <width>800</width>
     <height>600</height>
