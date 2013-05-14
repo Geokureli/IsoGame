@@ -18,8 +18,6 @@ package screens
 		
 		private var cellHolder:Sprite = new Sprite();
 		
-		private var _camera:GameCamera;
-		
 		public function GameScreen()
 		{
 			addEventListener(Event.ADDED_TO_STAGE, init);
@@ -46,19 +44,9 @@ package screens
 				}
 			}
 			
-			_camera = new GameCamera();
-			
-			addChild(_camera);
-			
-			_camera.focusX = 0;
-			_camera.focusY = 50;
-			
-			_camera.addChild(cellHolder);
-			
-			// TODO: Remove before commit
-			//addChild(cellHolder);
-			//cellHolder.x = Main.STAGE_HALF_WIDTH;
-			//cellHolder.y = Main.STAGE_HALF_HEIGHT - cellHolder.height / 2;
+			addChild(cellHolder);
+			cellHolder.x = Main.STAGE_HALF_WIDTH;
+			cellHolder.y = Main.STAGE_HALF_HEIGHT - cellHolder.height / 2;
 		}
 		
 		/**
