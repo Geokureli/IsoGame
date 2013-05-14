@@ -21,7 +21,7 @@ package input
 		private static var _mouseY:int;
 		
 		/**
-		 * Starts the mouse handler instance. This function must be called before attempting to access the instance.
+		 * Setup for the MouseHandler
 		 * @param	stage A reference to the current stage.
 		 */
 		public static function start(s:Stage):void
