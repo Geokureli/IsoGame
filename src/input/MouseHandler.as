@@ -6,11 +6,8 @@ package input
 	import flash.geom.Point;
 	
 	/**
-	 * Designed to provide more specific access to the keyboard compared to
+	 * Designed to provide more specific access to the mouse compared to
 	 * having the code duplicated accross multiple objects.
-	 * 
-	 * Call MouseHandler.start(stage) in the main class, after which
-	 * other classes can access a reference to the handler instance with MouseHandler.instance.
 	 * 
 	 * @author Kevan 'Kaveman' Robinson
 	 */
