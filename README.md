@@ -7,9 +7,9 @@ This will be updated time to time, so be sure to skim through it every few times
 
 Project Specifications
 -------
-IDE Support: FlashDevelop
-Language: ActionScript 3.0, English
-Screen Size: 800x600
+IDE Support: FlashDevelop  return
+Language: ActionScript 3.0, English  return
+Screen Size: 800x600  return
 
 Code Etiquette
 -------
